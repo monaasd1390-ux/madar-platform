@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -382,7 +381,7 @@
   .datebar .dtext b{display:block;font-family:'Tajawal',sans-serif;font-size:13.5px;color:#fff;font-weight:800;white-space:nowrap;}
   .datebar .dtext span{display:block;white-space:nowrap;font-variant-numeric:tabular-nums;}
 
-  .kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px;}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:22px;}
   .kpi-card{
     position:relative;overflow:hidden;border-radius:var(--radius);padding:18px;color:#fff;
     background:linear-gradient(135deg,var(--primary-dark),var(--primary));box-shadow:var(--shadow-sm);
@@ -414,6 +413,82 @@
 
   .ring{width:74px;height:74px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;}
   .ring-hole{width:56px;height:56px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-family:'Tajawal',sans-serif;font-weight:800;font-size:13px;color:var(--primary-dark);}
+
+  .trend-badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;margin-inline-start:8px;}
+  .trend-badge.up{background:#E1F5EC;color:#07a869;}
+  .trend-badge.down{background:#F7E7E3;color:#AE4739;}
+  .trend-badge.flat{background:var(--surface-alt);color:var(--muted);}
+  .kpi-card.alt4{background:linear-gradient(135deg,#0b6f6c,var(--brand-teal));}
+  .kpi-card.alt5{background:linear-gradient(135deg,#7a2e24,var(--danger));}
+  .kpi-card .kpi-trend{font-size:11px;opacity:.95;margin-top:5px;}
+  .quality-ring-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+  .quality-ring-wrap .ring{width:110px;height:110px;}
+  .quality-ring-wrap .ring-hole{width:84px;height:84px;font-size:19px;}
+  .quality-legend{flex:1;min-width:220px;display:flex;flex-direction:column;gap:9px;}
+  .quality-legend-row{display:flex;align-items:center;gap:8px;font-size:12.5px;}
+  .quality-legend-row .qlabel{flex:1;}
+  .quality-legend-row .qtrack{width:90px;background:var(--surface-alt);border-radius:99px;height:8px;overflow:hidden;}
+  .quality-legend-row .qfill{height:100%;border-radius:99px;transition:width .4s ease;}
+  .heat-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .heat-table th{background:var(--surface-alt);padding:8px 6px;font-weight:800;color:var(--primary-dark);text-align:center;font-size:11.5px;}
+  .heat-table td{padding:9px 6px;text-align:center;border:1px solid var(--border);font-weight:700;}
+  .heat-table td.city-cell{text-align:right;font-weight:800;color:var(--text);background:var(--surface);}
+  .gap-badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:800;}
+  .trend-spark-wrap{display:flex;align-items:stretch;gap:28px;flex-wrap:wrap;}
+  .trend-spark-card{flex:1;min-width:210px;}
+  .trend-spark-card h5{margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:700;}
+  .trend-spark-card .tsval{font-family:'Tajawal',sans-serif;font-size:21px;font-weight:900;color:var(--primary-dark);display:flex;align-items:center;flex-wrap:wrap;}
+  .workload-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:12.5px;}
+  .workload-row:last-child{border-bottom:none;}
+  .workload-pill{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:99px;white-space:nowrap;}
+  .workload-summary{display:flex;gap:18px;margin-bottom:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);}
+
+  .stats-layout{display:flex;gap:16px;align-items:flex-start;}
+  .stats-main{flex:1;min-width:0;}
+  .stats-calc{
+    width:290px;flex:none;position:sticky;top:16px;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px;box-shadow:var(--shadow-sm);max-height:calc(100vh - 32px);overflow-y:auto;
+  }
+  .stats-calc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;}
+  .stats-calc-head h3{margin:0;font-size:14.5px;color:var(--primary-dark);}
+  .calc-clear-btn{
+    background:none;border:1px solid var(--border);border-radius:99px;color:var(--muted);
+    font-size:11px;padding:3px 10px;cursor:pointer;flex:none;
+  }
+  .calc-clear-btn:hover{border-color:var(--danger);color:var(--danger);}
+  .calc-mode-tabs{display:flex;gap:6px;margin-bottom:14px;background:var(--surface-alt);border-radius:10px;padding:4px;}
+  .calc-mode-tab{
+    flex:1;border:none;background:none;padding:7px 6px;border-radius:8px;font-size:12.5px;font-weight:700;
+    color:var(--muted);cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;
+  }
+  .calc-mode-tab.active{background:var(--surface);color:var(--primary-dark);box-shadow:var(--shadow-sm);}
+  .calc-result{
+    text-align:center;background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+    color:#fff;border-radius:12px;padding:16px 10px;margin-bottom:14px;
+  }
+  .calc-result b{display:block;font-family:'Tajawal',sans-serif;font-size:34px;font-weight:900;line-height:1.1;}
+  .calc-result span{font-size:12px;opacity:.9;}
+  .calc-group{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;}
+  .calc-group summary{
+    padding:8px 10px;font-size:12.5px;font-weight:700;color:var(--text);cursor:pointer;
+    background:var(--surface-alt);list-style:none;display:flex;align-items:center;justify-content:space-between;
+  }
+  .calc-group summary::-webkit-details-marker{display:none;}
+  .calc-group summary::after{content:'▾';color:var(--muted);font-size:11px;}
+  .calc-group[open] summary::after{content:'▴';}
+  .calc-group summary .calc-group-count{
+    background:var(--primary-tint);color:var(--primary-dark);border-radius:99px;font-size:10.5px;
+    padding:1px 7px;margin-inline-start:6px;
+  }
+  .calc-group-body{padding:8px 10px;display:flex;flex-direction:column;gap:6px;}
+  .calc-check-row{display:flex;align-items:center;gap:7px;font-size:12.5px;cursor:pointer;}
+  .calc-check-row input{accent-color:var(--primary);width:14px;height:14px;flex:none;}
+  .calc-check-row .ccount{margin-inline-start:auto;color:var(--muted);font-size:11px;}
+  @media (max-width:1100px){
+    .stats-layout{flex-direction:column;}
+    .stats-calc{width:100%;position:static;max-height:none;}
+  }
 
   .sel-col{width:34px;text-align:center;}
   body.role-viewer .admin-only{display:none !important;}
@@ -987,6 +1062,8 @@
 
   <!-- Comprehensive Statistics View -->
   <div id="view-stats" style="display:none;">
+  <div class="stats-layout">
+  <div class="stats-main">
     <div class="notice-banner">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
       <div>كل الأرقام هنا تتحدّث تلقائيًا مع أي تعديل على بيانات المدارس أو المشرفين — لا حاجة لأي تحديث يدوي.</div>
@@ -1022,9 +1099,16 @@
     </div>
 
     <div class="dash-card" style="margin-bottom:16px;">
-      <h3 class="disp">📌 حالة التسكين — مسكّنة وغير مسكّنة</h3>
+      <h3 class="disp">📌 حالة التسكين — مسكّنة وغير مسكّنة (حسب المدينة والنوع)</h3>
       <div class="table-scroll">
         <table class="levels-table" id="statsAssignmentTable"></table>
+      </div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <h3 class="disp">📌 حالة التسكين — حسب المرحلة الدراسية</h3>
+      <div class="table-scroll">
+        <table class="levels-table" id="statsAssignmentByStageTable"></table>
       </div>
     </div>
 
@@ -1045,6 +1129,29 @@
         </div>
       </div>
     </div>
+
+    <div class="dash-card" style="margin-bottom:16px;">
+      <h3 class="disp">👥 المشرفون حسب الفئة الوظيفية في كل قطاع</h3>
+      <p style="font-size:12.5px;color:var(--muted);margin:-6px 0 12px;">يشمل تلقائيًا "مقدم خدمة دعم التميز المدرسي" و"فريق دعم التميز التنفيذي" وأي فئة وظيفية أخرى مُدخلة في قاعدة المشرفين.</p>
+      <div class="table-scroll" id="statsSupJobCatBySector"></div>
+    </div>
+  </div>
+
+  <aside class="stats-calc" id="statsCalcPanel">
+    <div class="stats-calc-head">
+      <h3 class="disp">🧮 حاسبة الأعداد السريعة</h3>
+      <button type="button" class="calc-clear-btn" id="calcClearBtn">مسح الكل</button>
+    </div>
+    <div class="calc-mode-tabs">
+      <button type="button" class="calc-mode-tab active" data-mode="schools" id="calcModeSchools">🏫 المدارس</button>
+      <button type="button" class="calc-mode-tab" data-mode="supervisors" id="calcModeSupervisors">👥 المشرفون</button>
+    </div>
+    <div class="calc-result">
+      <b id="calcResultNum">0</b><span id="calcResultLabel">مدرسة</span>
+    </div>
+    <div id="calcFiltersWrap"></div>
+  </aside>
+  </div>
   </div>
 
   <!-- Dashboard View -->
@@ -1057,6 +1164,17 @@
       <button class="btn btn-primary" id="exportPdfBtn">🖨️ طباعة / PDF</button>
     </div>
     <div class="kpi-row" id="kpiRow"></div>
+
+    <div class="dash-section-label">الاتجاه عبر الأشهر</div>
+    <div class="dash-card">
+      <h3 class="disp">📈 اتجاه المؤشرات الرئيسية (مقارنة باللقطات الشهرية التلقائية)</h3>
+      <div class="trend-spark-wrap">
+        <div class="trend-spark-card" id="trendTotalSchools"></div>
+        <div class="trend-spark-card" id="trendCoverage"></div>
+        <div class="trend-spark-card" id="trendAvgDegree"></div>
+        <div class="trend-spark-card" id="trendFlagged"></div>
+      </div>
+    </div>
 
     <div class="dash-section-label">المدارس</div>
     <div class="dash-grid">
@@ -1085,8 +1203,12 @@
         <div id="flagChart" class="bar-chart"></div>
       </div>
       <div class="dash-card" style="grid-column:1/-1;">
-        <h3 class="disp">اكتمال بيانات المدارس</h3>
-        <div id="completeChart" class="bar-chart"></div>
+        <h3 class="disp">🎯 مؤشر جودة بيانات المدارس (موحّد)</h3>
+        <div id="dataQualityWrap" class="quality-ring-wrap"></div>
+      </div>
+      <div class="dash-card" style="grid-column:1/-1;">
+        <h3 class="disp">🗺️ التصنيف حسب المدينة (أعلى 8 مدن)</h3>
+        <div class="table-scroll" id="classCityHeatmapWrap"></div>
       </div>
     </div>
     <div class="dash-section-label">المشرفون والمشرفات</div>
@@ -1102,6 +1224,14 @@
       <div class="dash-card" style="grid-column:1/-1;">
         <h3 class="disp">تغطية الإسناد الإشرافي</h3>
         <div id="coverageChart" class="bar-chart"></div>
+      </div>
+      <div class="dash-card" style="grid-column:1/-1;">
+        <h3 class="disp">⚖️ توزيع العبء على المشرفين (الأعلى تحميلًا)</h3>
+        <div id="workloadWrap"></div>
+      </div>
+      <div class="dash-card" style="grid-column:1/-1;">
+        <h3 class="disp">🚩 فجوة التغطية حسب المدينة</h3>
+        <div class="table-scroll" id="coverageGapWrap"></div>
       </div>
     </div>
   </div>
@@ -5971,6 +6101,58 @@ function renderStatsSupervisors(){
   barChart('statsSupByJobCat', groupBy('job_category'));
   barChart('statsSupByGender', groupBy('category'));
 }
+function renderStatsAssignmentByStage(){
+  const schools = statsCountedSchools();
+  const table = document.getElementById('statsAssignmentByStageTable');
+  if(!table) return;
+  let html = `<thead><tr><th>المرحلة</th><th>مسكّنة</th><th>غير مسكّنة</th><th>الإجمالي</th><th>نسبة التغطية</th></tr></thead><tbody>`;
+  let gTotal=0, gAssigned=0;
+  STAGE_ORDER.forEach(stage=>{
+    const list = schools.filter(s=>s.stage===stage);
+    if(!list.length) return;
+    const assigned = list.filter(s=>getSchoolSupervisorRoles(s.id).length>0).length;
+    gTotal += list.length; gAssigned += assigned;
+    const pct = list.length ? Math.round(assigned/list.length*100) : 0;
+    const badgeColor = pct>=90?'#07a869':(pct>=70?'#c1b489':'#AE4739');
+    html += `<tr><td>${esc(stage)}</td><td>${assigned}</td><td>${list.length-assigned}</td><td>${list.length}</td><td><span class="gap-badge" style="background:${badgeColor}22;color:${badgeColor};">${pct}%</span></td></tr>`;
+  });
+  const gPct = gTotal ? Math.round(gAssigned/gTotal*100) : 0;
+  html += `<tr style="background:var(--primary-tint);font-weight:900;"><td>الإجمالي الكلي</td><td>${gAssigned}</td><td>${gTotal-gAssigned}</td><td>${gTotal}</td><td>${gPct}%</td></tr>`;
+  html += '</tbody>';
+  table.innerHTML = html;
+}
+function renderStatsSupJobCatBySector(){
+  const el = document.getElementById('statsSupJobCatBySector');
+  if(!el) return;
+  const sectors = ['شمال','جنوب','وسط','رابغ','خليص','الكامل'];
+  const presentSectors = sectors.filter(sec=>state.supervisorsMaster.some(s=>s.sector===sec));
+  const otherSectors = [...new Set(state.supervisorsMaster.map(s=>s.sector).filter(s=>s && !sectors.includes(s)))];
+  const allSectors = [...presentSectors, ...otherSectors];
+  const jobCats = [...new Set(state.supervisorsMaster.map(s=>s.job_category).filter(Boolean))];
+  // Feature the two named categories first if present, then the rest alphabetically.
+  const featured = ['مقدم خدمة دعم التميز المدرسي','فريق دعم التميز التنفيذي'].filter(c=>jobCats.includes(c));
+  const rest = jobCats.filter(c=>!featured.includes(c)).sort((a,b)=>a.localeCompare(b,'ar'));
+  const cols = [...featured, ...rest];
+  if(!allSectors.length || !cols.length){
+    el.innerHTML = `<div style="font-size:12.5px;color:var(--muted);">لا توجد بيانات كافية بعد (يلزم تعبئة القطاع والفئة الوظيفية لكل مشرف/ة).</div>`;
+    return;
+  }
+  let html = `<table class="heat-table"><thead><tr><th style="text-align:right;">القطاع</th>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}<th>الإجمالي</th></tr></thead><tbody>`;
+  const colTotals = {}; cols.forEach(c=>colTotals[c]=0);
+  allSectors.forEach(sec=>{
+    let rowTotal = 0;
+    const cells = cols.map(c=>{
+      const n = state.supervisorsMaster.filter(s=>s.sector===sec && s.job_category===c).length;
+      rowTotal += n; colTotals[c] += n;
+      return `<td>${n||''}</td>`;
+    }).join('');
+    html += `<tr><td class="city-cell">${esc(sec)}</td>${cells}<td><b>${rowTotal}</b></td></tr>`;
+  });
+  const grandTotal = Object.values(colTotals).reduce((a,b)=>a+b,0);
+  html += `<tr style="background:var(--primary-tint);font-weight:900;"><td class="city-cell">الإجمالي الكلي</td>${cols.map(c=>`<td>${colTotals[c]}</td>`).join('')}<td>${grandTotal}</td></tr>`;
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
 function renderEarlyChildhoodEditor(){
   const q = document.getElementById('ecSearchInput').value.trim();
   const ecSchools = state.schools
@@ -5999,12 +6181,137 @@ document.getElementById('toggleEarlyChildhoodEditor')?.addEventListener('click',
 });
 document.getElementById('ecSearchInput')?.addEventListener('input', renderEarlyChildhoodEditor);
 document.getElementById('statsCityFilter')?.addEventListener('change', renderStatsView);
+/* ---------------- Quick-count calculator (sidebar) ---------------- */
+const calcState = {
+  mode: 'schools',
+  selections: {
+    schools: { stage:new Set(), type:new Set(), gender:new Set(), city:new Set(), classification:new Set(), assignment:new Set() },
+    supervisors: { sector:new Set(), job_category:new Set(), category:new Set() },
+  },
+};
+const CALC_GROUPS_SCHOOLS = [
+  {key:'stage', label:'المرحلة الدراسية', getOptions: ()=> STAGE_ORDER.filter(st=>state.schools.some(s=>s.stage===st))},
+  {key:'type', label:'النوع', getOptions: ()=> ['حكومي','أهلي','عالمي وأجنبي'].filter(t=>state.schools.some(s=>s.type===t))},
+  {key:'gender', label:'الجنس', getOptions: ()=> ['بنين','بنات'].filter(g=>state.schools.some(s=>s.gender===g))},
+  {key:'city', label:'المدينة', getOptions: ()=> [...new Set(state.schools.map(s=>s.city).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'))},
+  {key:'classification', label:'التصنيف', getOptions: ()=> ['التميز','التقدم','الانطلاق','التهيئة'].filter(c=>state.schools.some(s=>s.classification===c))},
+  {key:'assignment', label:'حالة التسكين', getOptions: ()=> ['مسكّنة','غير مسكّنة']},
+];
+const CALC_GROUPS_SUPERVISORS = [
+  {key:'sector', label:'القطاع', getOptions: ()=> ['شمال','جنوب','وسط','رابغ','خليص','الكامل'].filter(sec=>state.supervisorsMaster.some(s=>s.sector===sec))},
+  {key:'job_category', label:'الفئة الوظيفية', getOptions: ()=> [...new Set(state.supervisorsMaster.map(s=>s.job_category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'))},
+  {key:'category', label:'الفئة', getOptions: ()=> [...new Set(state.supervisorsMaster.map(s=>s.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'))},
+];
+function calcMatchesSchool(s){
+  const sel = calcState.selections.schools;
+  if(sel.stage.size && !sel.stage.has(s.stage)) return false;
+  if(sel.type.size && !sel.type.has(s.type)) return false;
+  if(sel.gender.size && !sel.gender.has(s.gender)) return false;
+  if(sel.city.size && !sel.city.has(s.city)) return false;
+  if(sel.classification.size && !sel.classification.has(s.classification)) return false;
+  if(sel.assignment.size){
+    const label = getSchoolSupervisorRoles(s.id).length>0 ? 'مسكّنة' : 'غير مسكّنة';
+    if(!sel.assignment.has(label)) return false;
+  }
+  return true;
+}
+function calcMatchesSupervisor(sv){
+  const sel = calcState.selections.supervisors;
+  if(sel.sector.size && !sel.sector.has(sv.sector)) return false;
+  if(sel.job_category.size && !sel.job_category.has(sv.job_category)) return false;
+  if(sel.category.size && !sel.category.has(sv.category)) return false;
+  return true;
+}
+function computeCalcResult(){
+  const numEl = document.getElementById('calcResultNum');
+  const labelEl = document.getElementById('calcResultLabel');
+  if(!numEl) return;
+  if(calcState.mode==='schools'){
+    numEl.textContent = state.schools.filter(calcMatchesSchool).length.toLocaleString('en-US');
+    labelEl.textContent = 'مدرسة';
+  }else{
+    numEl.textContent = state.supervisorsMaster.filter(calcMatchesSupervisor).length.toLocaleString('en-US');
+    labelEl.textContent = 'مشرف/ة';
+  }
+}
+function calcOptionCount(mode, groupKey, value){
+  if(mode==='schools'){
+    if(groupKey==='assignment'){
+      return state.schools.filter(s=>(getSchoolSupervisorRoles(s.id).length>0?'مسكّنة':'غير مسكّنة')===value).length;
+    }
+    return state.schools.filter(s=>s[groupKey]===value).length;
+  }
+  return state.supervisorsMaster.filter(s=>s[groupKey]===value).length;
+}
+function renderCalcFilters(){
+  const wrap = document.getElementById('calcFiltersWrap');
+  if(!wrap) return;
+  const groups = calcState.mode==='schools' ? CALC_GROUPS_SCHOOLS : CALC_GROUPS_SUPERVISORS;
+  const sel = calcState.selections[calcState.mode];
+  wrap.innerHTML = groups.map(g=>{
+    const options = g.getOptions();
+    if(!options.length) return '';
+    const activeCount = sel[g.key].size;
+    return `<details class="calc-group">
+      <summary>${esc(g.label)}${activeCount?`<span class="calc-group-count">${activeCount}</span>`:''}</summary>
+      <div class="calc-group-body">
+        ${options.map(opt=>{
+          const checked = sel[g.key].has(opt);
+          const count = calcOptionCount(calcState.mode, g.key, opt);
+          return `<label class="calc-check-row">
+            <input type="checkbox" data-group="${esc(g.key)}" data-value="${esc(opt)}" ${checked?'checked':''}>
+            <span>${esc(opt)}</span><span class="ccount">${count}</span>
+          </label>`;
+        }).join('')}
+      </div>
+    </details>`;
+  }).join('');
+  wrap.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change', e=>{
+      const g = e.target.dataset.group, v = e.target.dataset.value;
+      const set = calcState.selections[calcState.mode][g];
+      if(e.target.checked) set.add(v); else set.delete(v);
+      const summary = e.target.closest('.calc-group').querySelector('summary');
+      let badge = summary.querySelector('.calc-group-count');
+      if(set.size){
+        if(badge) badge.textContent = set.size;
+        else summary.insertAdjacentHTML('beforeend', `<span class="calc-group-count">${set.size}</span>`);
+      }else if(badge){
+        badge.remove();
+      }
+      computeCalcResult();
+    });
+  });
+  computeCalcResult();
+}
+document.getElementById('calcModeSchools')?.addEventListener('click', ()=>{
+  if(calcState.mode==='schools') return;
+  calcState.mode = 'schools';
+  document.getElementById('calcModeSchools').classList.add('active');
+  document.getElementById('calcModeSupervisors').classList.remove('active');
+  renderCalcFilters();
+});
+document.getElementById('calcModeSupervisors')?.addEventListener('click', ()=>{
+  if(calcState.mode==='supervisors') return;
+  calcState.mode = 'supervisors';
+  document.getElementById('calcModeSupervisors').classList.add('active');
+  document.getElementById('calcModeSchools').classList.remove('active');
+  renderCalcFilters();
+});
+document.getElementById('calcClearBtn')?.addEventListener('click', ()=>{
+  Object.values(calcState.selections[calcState.mode]).forEach(set=>set.clear());
+  renderCalcFilters();
+});
+
 function renderStatsView(){
   populateStatsCityFilter();
   renderStatsSchoolsTable();
   renderStatsAssignmentTable();
+  renderStatsAssignmentByStage();
   renderStatsPrograms();
   renderStatsSupervisors();
+  renderStatsSupJobCatBySector();
+  renderCalcFilters();
   const excludedCount = state.schools.filter(s=>s.stage==='الطفولة المبكرة' && s.ec_tracked===false).length;
   document.getElementById('excludedEcCount').textContent = excludedCount;
 }
@@ -6237,12 +6544,14 @@ document.getElementById('programDetailOverlay').addEventListener('click', e=>{ i
 document.getElementById('programSearchInput').addEventListener('input', renderProgramsView);
 
 /* ---------------- Dashboard ---------------- */
+const CHART_PALETTE = ['var(--brand-blue)','var(--brand-teal)','var(--primary)','var(--accent-dark)','var(--brand-purple)','var(--danger)','var(--brand-navy)','var(--brand-gray)'];
+function paletteColor(i){ return CHART_PALETTE[i % CHART_PALETTE.length]; }
 function barChart(containerId, rows, colorFn){
   const max = Math.max(1, ...rows.map(r=>r.value));
-  document.getElementById(containerId).innerHTML = rows.map(r=>`
+  document.getElementById(containerId).innerHTML = rows.map((r,i)=>`
     <div class="bar-row">
       <span>${esc(r.label)}</span>
-      <div class="bar-track"><div class="bar-fill" style="width:${(r.value/max*100).toFixed(1)}%;${colorFn?`background:${colorFn(r.label)};`:''}"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(r.value/max*100).toFixed(1)}%;background:${colorFn?colorFn(r.label):paletteColor(i)};"></div></div>
       <span>${r.value.toLocaleString('en-US')}</span>
     </div>`).join('');
 }
@@ -6269,6 +6578,162 @@ function ringChart(pct, color){
   const deg = Math.max(0,Math.min(100,pct))/100*360;
   return `<div class="ring" style="background:conic-gradient(${color} ${deg}deg, #ffffff30 ${deg}deg);">
     <div class="ring-hole">${Math.round(pct)}%</div></div>`;
+}
+
+/* ---------------- Advanced analytics: trend sparklines ---------------- */
+function sparkPath(values, w, h, pad){
+  if(values.length<2) return '';
+  const min = Math.min(...values), max = Math.max(...values);
+  const range = (max-min)||1;
+  const step = (w-pad*2)/(values.length-1);
+  return values.map((v,i)=>{
+    const x = pad + i*step;
+    const y = pad + (h-pad*2) * (1 - (v-min)/range);
+    return `${i===0?'M':'L'}${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+}
+function renderTrendSpark(containerId, label, values, color, formatter){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  if(values.length<2){
+    el.innerHTML = `<h5>${esc(label)}</h5><div style="font-size:12px;color:var(--muted);">سيظهر الاتجاه هنا تلقائيًا بعد توفر لقطتين شهريتين أو أكثر (المتوفر حاليًا: ${values.length}).</div>`;
+    return;
+  }
+  const w=220,h=54,pad=6;
+  const path = sparkPath(values, w, h, pad);
+  const last = values[values.length-1];
+  const prev = values[values.length-2];
+  const delta = last-prev;
+  const pct = prev ? (delta/Math.abs(prev)*100) : 0;
+  const dir = Math.abs(delta)<0.05 ? 'flat' : (delta>0?'up':'down');
+  const arrow = dir==='flat' ? '—' : (dir==='up'?'▲':'▼');
+  el.innerHTML = `
+    <h5>${esc(label)}</h5>
+    <div class="tsval">${formatter?formatter(last):last}<span class="trend-badge ${dir}">${arrow}${dir==='flat'?'':' '+Math.abs(pct).toFixed(1)+'%'}</span></div>
+    <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}">
+      <path d="${path}" fill="none" stroke="${color}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+}
+function renderMonthlyTrends(){
+  const snaps = state.snapshots||[];
+  renderTrendSpark('trendTotalSchools','إجمالي المدارس', snaps.map(s=>s.total), '#3d7eb9');
+  renderTrendSpark('trendCoverage','نسبة تغطية الإسناد', snaps.map(s=>s.coveragePct), '#0da9a6', v=>v+'%');
+  renderTrendSpark('trendAvgDegree','متوسط درجة التصنيف', snaps.map(s=>s.avgDegree), '#96874f', v=>v.toFixed(1));
+  renderTrendSpark('trendFlagged','مدارس بإشارات تحذيرية', snaps.map(s=>s.flagged), '#AE4739');
+}
+
+/* ---------------- Advanced analytics: unified data-quality score ---------------- */
+function renderDataQuality(){
+  const el = document.getElementById('dataQualityWrap');
+  if(!el) return;
+  const total = state.schools.length || 1;
+  const fields = [
+    {label:'المدينة', test:s=>!!s.city},
+    {label:'اسم المدير/ة', test:s=>!!s.principal_name},
+    {label:'التصنيف', test:s=>!!s.classification},
+    {label:'الإسناد الإشرافي', test:s=>!!(s.supervisors&&s.supervisors.length>0)},
+    {label:'الإحداثيات الجغرافية', test:s=>!!(s.lat&&s.lng)},
+  ];
+  const fieldCounts = fields.map(f=>({...f,count:0}));
+  let sumScore = 0;
+  state.schools.forEach(s=>{
+    let ok=0;
+    fieldCounts.forEach(f=>{ if(f.test(s)){ f.count++; ok++; } });
+    sumScore += ok/fields.length;
+  });
+  const overallPct = (sumScore/total)*100;
+  const ringColor = overallPct>=80?'#07a869':(overallPct>=60?'#c1b489':'#AE4739');
+  el.innerHTML = `
+    ${ringChart(overallPct, ringColor)}
+    <div class="quality-legend">
+      ${fieldCounts.map(f=>{
+        const pct = (f.count/total)*100;
+        const c = pct>=80?'#07a869':(pct>=60?'#c1b489':'#AE4739');
+        return `<div class="quality-legend-row"><span class="qlabel">${esc(f.label)}</span><div class="qtrack"><div class="qfill" style="width:${pct.toFixed(0)}%;background:${c};"></div></div><b>${pct.toFixed(0)}%</b></div>`;
+      }).join('')}
+    </div>`;
+}
+
+/* ---------------- Advanced analytics: supervisor workload distribution ---------------- */
+function renderWorkloadDistribution(){
+  const el = document.getElementById('workloadWrap');
+  if(!el) return;
+  const map = buildSupervisorMap().filter(m=>m.linked);
+  const loads = map.map(m=>m.schools.length);
+  const avg = loads.length ? (loads.reduce((a,b)=>a+b,0)/loads.length) : 0;
+  const idle = map.filter(m=>m.schools.length===0).length;
+  const top = [...map].sort((a,b)=>b.schools.length-a.schools.length).slice(0,8);
+  const overloadThreshold = avg*1.5;
+  el.innerHTML = `
+    <div class="workload-summary">
+      <div>متوسط المدارس لكل مشرف(ة): <b style="color:var(--primary-dark);">${avg.toFixed(1)}</b></div>
+      <div>مشرفون/ات بلا أي مدرسة أساسية: <b style="color:var(--danger);">${idle}</b></div>
+    </div>
+    ${top.map(m=>{
+      const overloaded = overloadThreshold>0 && m.schools.length >= overloadThreshold;
+      return `<div class="workload-row">
+        <span>${esc(m.name)}${m.sector?` <span style="color:var(--muted);font-size:11px;">— ${esc(m.sector)}</span>`:''}</span>
+        <span class="workload-pill" style="background:${overloaded?'#F7E7E3':'#E1F5EC'};color:${overloaded?'#AE4739':'#07a869'};">${m.schools.length} مدرسة${overloaded?' ⚠':''}</span>
+      </div>`;
+    }).join('') || '<div style="font-size:12.5px;color:var(--muted);">لا توجد بيانات إسناد كافية بعد.</div>'}`;
+}
+
+/* ---------------- Advanced analytics: coverage gap by city ---------------- */
+function renderCoverageGap(){
+  const el = document.getElementById('coverageGapWrap');
+  if(!el) return;
+  const cityMap = {};
+  state.schools.forEach(s=>{
+    const c = s.city || 'غير محدد';
+    if(!cityMap[c]) cityMap[c] = {city:c, total:0, uncovered:0};
+    cityMap[c].total++;
+    if(!(s.supervisors && s.supervisors.length>0)) cityMap[c].uncovered++;
+  });
+  const rows = Object.values(cityMap).sort((a,b)=>b.uncovered-a.uncovered).slice(0,10);
+  el.innerHTML = `
+    <table class="heat-table">
+      <thead><tr><th style="text-align:right;">المدينة</th><th>إجمالي المدارس</th><th>بدون إسناد</th><th>التغطية</th></tr></thead>
+      <tbody>
+      ${rows.map(r=>{
+        const pct = r.total ? ((r.total-r.uncovered)/r.total*100) : 0;
+        const badgeColor = pct>=90?'#07a869':(pct>=70?'#c1b489':'#AE4739');
+        return `<tr><td class="city-cell">${esc(r.city)}</td><td>${r.total}</td><td>${r.uncovered}</td><td><span class="gap-badge" style="background:${badgeColor}22;color:${badgeColor};">${pct.toFixed(0)}%</span></td></tr>`;
+      }).join('') || `<tr><td colspan="4" style="color:var(--muted);">لا توجد بيانات كافية بعد.</td></tr>`}
+      </tbody>
+    </table>`;
+}
+
+/* ---------------- Advanced analytics: classification × city cross-tab ---------------- */
+function renderClassCityHeatmap(){
+  const el = document.getElementById('classCityHeatmapWrap');
+  if(!el) return;
+  const levels = ['التميز','التقدم','الانطلاق','التهيئة'];
+  const levelColors = {'التميز':'7,168,105','التقدم':'193,180,137','الانطلاق':'48,120,166','التهيئة':'192,86,74'};
+  const cityTotals = {};
+  state.schools.forEach(s=>{ const c=s.city||'غير محدد'; cityTotals[c]=(cityTotals[c]||0)+1; });
+  const topCities = Object.entries(cityTotals).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([c])=>c);
+  const grid = {};
+  topCities.forEach(c=>{ grid[c]={}; levels.forEach(l=>grid[c][l]=0); });
+  state.schools.forEach(s=>{
+    const c = s.city||'غير محدد';
+    if(!topCities.includes(c)) return;
+    const l = s.classification;
+    if(l && grid[c][l]!==undefined) grid[c][l]++;
+  });
+  el.innerHTML = topCities.length ? `
+    <table class="heat-table">
+      <thead><tr><th style="text-align:right;">المدينة</th>${levels.map(l=>`<th>${esc(l)}</th>`).join('')}</tr></thead>
+      <tbody>
+      ${topCities.map(c=>{
+        const rowMax = Math.max(1,...levels.map(l=>grid[c][l]));
+        return `<tr><td class="city-cell">${esc(c)}</td>${levels.map(l=>{
+          const v = grid[c][l];
+          const alpha = v ? (0.18 + 0.62*(v/rowMax)) : 0;
+          return `<td style="background:rgba(${levelColors[l]},${alpha});color:${alpha>0.45?'#fff':'var(--text)'};">${v||''}</td>`;
+        }).join('')}</tr>`;
+      }).join('')}
+      </tbody>
+    </table>` : `<div style="font-size:12.5px;color:var(--muted);">لا توجد بيانات كافية بعد.</div>`;
 }
 function kpiIconSchool(){ return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2V17c0 2 3 4 7 4s7-2 7-4v-3.8l-7 3.8z"/></svg>`; }
 function kpiIconUsers(){ return `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3zm-8 0c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3zm0 2c-2.3 0-7 1.2-7 3.5V19h9v-2.5c0-.9.4-2.1 1.4-3.1C10.5 13.1 9 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2 1 1.5 2.3 1.5 3.4V19h6v-2.5c0-2.3-4.7-3.5-6.5-3.5z"/></svg>`; }
@@ -6334,12 +6799,6 @@ function renderDashboard(){
   const withPrincipal = state.schools.filter(s=>s.principal_name).length;
   const withClass = state.schools.filter(s=>s.classification).length;
   const withSup = state.schools.filter(s=>s.supervisors && s.supervisors.length>0).length;
-  barChart('completeChart', [
-    {label:'لديها مدينة', value: withCity},
-    {label:'لديها مديرة', value: withPrincipal},
-    {label:'مصنّفة', value: withClass},
-    {label:'لديها مشرفات', value: withSup},
-  ]);
 
   const sectorCounts = {};
   state.supervisorsMaster.forEach(s=>{ const sec = s.sector||'بدون قطاع'; sectorCounts[sec]=(sectorCounts[sec]||0)+1; });
@@ -6367,10 +6826,23 @@ function renderDashboard(){
   const avgDegree = degrees.length ? (degrees.reduce((a,b)=>a+b,0)/degrees.length) : 0;
   const classifiedPct = (withClass/total)*100;
   const coveragePct = linkedTotal ? (withSchools/linkedTotal)*100 : 0;
+  const uncoveredSchools = state.schools.filter(s=>!(s.supervisors&&s.supervisors.length>0)).length;
+  const uncoveredPct = (uncoveredSchools/total)*100;
+  const urgentCount = state.schools.filter(s=>s.flag && /عاجل/.test(s.flag.label||'')).length;
+  const snaps = state.snapshots||[];
+  const prevSnap = snaps.length ? snaps[snaps.length-1] : null;
+  const kpiTrend = (curVal, prevVal, higherIsBetter=true)=>{
+    if(prevVal===undefined || prevVal===null) return '';
+    const delta = curVal - prevVal;
+    if(Math.abs(delta) < 0.05) return `<div class="kpi-trend">— بدون تغيّر عن آخر لقطة شهرية</div>`;
+    const arrow = delta>0?'▲':'▼';
+    return `<div class="kpi-trend">${arrow} ${Math.abs(delta).toFixed(1)} عن آخر لقطة شهرية</div>`;
+  };
   document.getElementById('kpiRow').innerHTML = `
     <div class="kpi-card">
       <div class="kpi-icon">${kpiIconSchool()}</div>
       <b>${total.toLocaleString('en-US')}</b><span>إجمالي المدارس المسجّلة</span>
+      ${prevSnap?kpiTrend(total, prevSnap.total):''}
     </div>
     <div class="kpi-card alt2">
       <div class="kpi-icon">${kpiIconUsers()}</div>
@@ -6379,11 +6851,28 @@ function renderDashboard(){
     <div class="kpi-card alt">
       <div class="kpi-icon">${kpiIconStar()}</div>
       <b>${avgDegree.toFixed(1)}</b><span>متوسط درجة التصنيف العام</span>
+      ${prevSnap?kpiTrend(avgDegree, prevSnap.avgDegree):''}
     </div>
     <div class="kpi-card alt3">
       <div class="kpi-icon">${kpiIconLink()}</div>
       <b>${coveragePct.toFixed(0)}%</b><span>نسبة تغطية الإسناد الإشرافي</span>
+      ${prevSnap?kpiTrend(coveragePct, prevSnap.coveragePct):''}
+    </div>
+    <div class="kpi-card alt4">
+      <div class="kpi-icon">${kpiIconLink()}</div>
+      <b>${uncoveredPct.toFixed(0)}%</b><span>مدارس بلا إسناد إشرافي (${uncoveredSchools})</span>
+    </div>
+    <div class="kpi-card alt5">
+      <div class="kpi-icon">${kpiIconStar()}</div>
+      <b>${urgentCount.toLocaleString('en-US')}</b><span>مدارس بإشارة تدخل عاجل</span>
+      ${prevSnap?kpiTrend(urgentCount, prevSnap.flagged, false):''}
     </div>`;
+
+  renderMonthlyTrends();
+  renderDataQuality();
+  renderClassCityHeatmap();
+  renderWorkloadDistribution();
+  renderCoverageGap();
 }
 
 /* ---------------- View switching ---------------- */
