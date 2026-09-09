@@ -2114,7 +2114,8 @@ async function initFirebase(){
   }
   if(!ok){
     console.error('Firebase SDK failed to load from any CDN');
-    showCloudStatusBanner(false, 'تعذّر تحميل مكتبة الاتصال بقاعدة البيانات (مشكلة شبكة). البيانات المعروضة الآن هي النسخة الأساسية فقط ولن تُحفظ التعديلات — أعيدي تحميل الصفحة، وإن استمرت المشكلة فقد تكون الشبكة تحظر gstatic.com وjsdelivr.net.');
+    document.getElementById('loadingOverlay')?.remove();
+    showLogin('تعذّر تحميل مكتبة الاتصال (مشكلة شبكة). أعيدي تحميل الصفحة، وإن استمرت المشكلة فقد تكون الشبكة تحظر gstatic.com وjsdelivr.net.');
     return;
   }
   try{
@@ -2123,10 +2124,12 @@ async function initFirebase(){
     // Auto-detect the fastest working connection method instead of forcing
     // long-polling (which is slower once a normal connection is possible).
     firestoreDb.settings({ experimentalAutoDetectLongPolling: true });
+    firebaseAuth = firebase.auth();
     firebaseReady = true;
   }catch(e){
     console.error('Firebase init failed', e);
-    showCloudStatusBanner(false, 'تعذّر الاتصال بقاعدة البيانات السحابية: '+(e.message||e));
+    document.getElementById('loadingOverlay')?.remove();
+    showLogin('تعذّر الاتصال بقاعدة البيانات السحابية: '+(e.message||e));
   }
 }
 function showCloudStatusBanner(ok, msg){
@@ -7037,6 +7040,28 @@ document.getElementById('logoutBtn').addEventListener('click', ()=>{
   if(confirm('تسجيل الخروج من منصة مدار؟')) firebaseAuth.signOut();
 });
 
+let appStarted = false;
+async function handleAuthState(user){
+  if(!user){
+    currentUserRole = null;
+    appStarted = false;
+    document.body.classList.remove('role-viewer');
+    const chip = document.getElementById('roleChip');
+    if(chip) chip.style.display = 'none';
+    document.getElementById('loadingOverlay')?.remove();
+    showLogin();
+    return;
+  }
+  hideLogin();
+  document.getElementById('loadingOverlay')?.remove();
+  currentUserRole = await fetchUserRole(user.email);
+  applyRoleRestrictions();
+  if(!appStarted){
+    appStarted = true;
+    await loadAppData();
+  }
+}
+
 
 async function loadAppData(){
   updateLiveDate();
@@ -7115,10 +7140,12 @@ document.getElementById('manualRefreshBtn')?.addEventListener('click', ()=>refre
 
 (async function init(){
   await initFirebase();
-  // Login is temporarily disabled at the requester's wish (avoiding disruption
-  // while a stakeholder is actively reviewing the platform). To re-enable,
-  // restore the auth-gated version of this block.
-  await loadAppData();
+  if(firebaseAuth){
+    firebaseAuth.onAuthStateChanged(handleAuthState);
+  }else{
+    document.getElementById('loadingOverlay')?.remove();
+    showLogin('تعذّر الاتصال بخدمة تسجيل الدخول، تحققي من الإنترنت وأعيدي تحميل الصفحة.');
+  }
 })();
 </script>
 </body>
